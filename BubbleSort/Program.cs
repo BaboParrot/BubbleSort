@@ -1,27 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System;
 
 class BubbleSortExample
 {
-    // Metode for å utføre Bubble Sort
+    // Metode for å utføre Bubble Sort med tidlig avslutning
     static void BubbleSort(int[] array)
     {
         int n = array.Length;
+        bool swapped;
+
         for (int i = 0; i < n - 1; i++)
         {
+            swapped = false;
+
             for (int j = 0; j < n - i - 1; j++)
             {
                 if (array[j] > array[j + 1])
                 {
-                    // Bytte 2 elementer
+                    // Bytte to elementer
                     int temp = array[j];
                     array[j] = array[j + 1];
                     array[j + 1] = temp;
+                    swapped = true;
                 }
+            }
+
+            // Slutter å loope hvis alt er sortert
+            if (!swapped)
+            {
+                break;
             }
         }
     }
@@ -37,7 +43,7 @@ class BubbleSortExample
         }
         Console.WriteLine();
 
-        BubbleSort(array);//kalle på metoden bubblesort, og sender med den usorterte arrayen
+        BubbleSort(array); // Kalle på metoden BubbleSort, og sende med den usorterte arrayen
 
         Console.WriteLine("Sorted array:");
         foreach (int item in array)
@@ -45,5 +51,7 @@ class BubbleSortExample
             Console.Write(item + " ");
         }
         Console.WriteLine();
+
+        Console.ReadLine();
     }
 }
